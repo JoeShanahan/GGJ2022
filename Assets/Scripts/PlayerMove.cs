@@ -136,11 +136,13 @@ public class PlayerMove : MonoBehaviour
             _move.velocity += _ground.contactNormal  * jumpSpeed;
             _anim.DoJump();
         }
+        /*
         else if (OnWall)
         {
             Vector3 jumpDir = (_ground.wallNormal + Vector3.up).normalized;
             _move.velocity = jumpDir * jumpSpeed * _jump.wallJumpPower;
         }
+        */
         else if (_jump.phase <= _jump.maxAirJumps)
         {
             _move.velocity.y = jumpSpeed;
