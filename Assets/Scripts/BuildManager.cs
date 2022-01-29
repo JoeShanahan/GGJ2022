@@ -69,7 +69,7 @@ public class BuildManager : MonoBehaviour
 
     public void PlaceGhostedItem(Vector3 pos)
     {
-        if (pos.y < 0 || pos.y > 8)
+        if (pos.y < 0 || pos.y > 2)
             return;
 
         GameObject newObj = Instantiate(_chosenPrefab);

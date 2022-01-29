@@ -86,7 +86,7 @@ public class VillagerMove : MonoBehaviour
         Vector2 playerInput = Vector2.ClampMagnitude(inputDirection, 1);
 
         _move.desiredVelocity = new Vector3(playerInput.x, 0f, playerInput.y) * _move.maxSpeed;
-		_jump.isRequested |= Input.GetButtonDown("Jump");
+		// _jump.isRequested |= Input.GetButtonDown("Jump");
 
         HandleFacingDirection(playerInput);
     }
