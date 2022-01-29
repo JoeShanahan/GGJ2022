@@ -10,10 +10,40 @@ public class BuildManager : MonoBehaviour
 
     private Transform _ghostObject;
     private int _rotation;
+    private bool _isBuildMode = false;
+
+    private List<Transform> _placeHistory = new List<Transform>();
 
     private Camera _mainCam;
 
-    public bool IsBuildMode => _chosenPrefab != null;
+    public bool IsPlacing => _chosenPrefab != null;
+    public bool IsBuildMode => _isBuildMode;
+
+    public void SetBuildModeActive(bool shouldBeActive)
+    {
+        if (shouldBeActive == _isBuildMode)
+            return;
+
+        _isBuildMode = shouldBeActive;
+
+        if (_isBuildMode)
+        {
+
+        }
+        else
+        {
+            _placeHistory.Clear();
+            CancelPlacing();
+        }
+    }
+
+    void CancelPlacing()
+    {
+        _chosenPrefab = null;
+
+        if (_ghostObject != null)
+            Destroy(_ghostObject.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +51,29 @@ public class BuildManager : MonoBehaviour
         _mainCam = Camera.main;
     }
 
+    void Undo()
+    {
+        if (_placeHistory.Count == 0)
+            return;
+
+        int idx = _placeHistory.Count - 1;
+        Transform obj = _placeHistory[idx];
+        _placeHistory.RemoveAt(idx);
+
+        Destroy(obj.gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (_chosenPrefab == null)
+        if (_isBuildMode == false)
             return;
 
+        if (Input.GetKeyDown(KeyCode.U))
+            Undo();
+
+        if (_chosenPrefab == null)
+            return;
 
         Vector3 ghostPos = GetGhostPosition();
         _ghostObject.position = ghostPos;
@@ -51,7 +98,7 @@ public class BuildManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            _chosenPrefab = null;
+            CancelPlacing();
             return;
         }
     }
@@ -76,9 +123,10 @@ public class BuildManager : MonoBehaviour
         GameObject newObj = Instantiate(_chosenPrefab, _constructParent);
         newObj.transform.position = pos;
         newObj.transform.rotation = _ghostObject.transform.rotation;
+        _placeHistory.Add(newObj.transform);
     }
 
-    public void ActivateBuildMode(GameObject prefab)
+    public void SelectPrefabToPlace(GameObject prefab)
     {
         _chosenPrefab = prefab;
         GameObject newObj = Instantiate(_chosenPrefab);

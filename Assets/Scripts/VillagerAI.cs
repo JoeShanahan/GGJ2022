@@ -35,8 +35,11 @@ public class VillagerAI : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(transform.position, point,  NavMesh.AllAreas, path);
         
-        if (path != null)
+        if (path != null && path.corners.Length > 0)
+        {
             _currentPath = new ActivePath(path);
+            _currentPath.Advance(1f);
+        }
     }
 
     public void FollowCurrentPath()
