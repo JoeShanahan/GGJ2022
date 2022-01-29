@@ -52,6 +52,7 @@ public class VillagerMove : MonoBehaviour
 	[SerializeField] MoveInfo _move;
     [SerializeField] Transform _floorTransform;
     [SerializeField] VillagerAnimations _anim;
+    [SerializeField] GameStuff _gameState;
     
     Rigidbody _rb;
 
@@ -79,11 +80,17 @@ public class VillagerMove : MonoBehaviour
 		_ground.contactNormal = Vector3.zero;
         _ground.wallContactCount = 0;
         _ground.wallNormal = Vector3.zero;
+
+        if (_gameState.IsNotPlayMode)
+            _move.desiredVelocity = Vector3.zero;
 	}
 
     // Update is called once per frame
     void Update()
     {
+        if (_gameState.IsNotPlayMode)
+            return;
+
         Vector2 playerInput = Vector2.ClampMagnitude(inputDirection, 1);
 
         _move.desiredVelocity = new Vector3(playerInput.x, 0f, playerInput.y) * _move.maxSpeed;

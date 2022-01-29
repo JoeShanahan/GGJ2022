@@ -20,7 +20,7 @@ public class TopBarUI : MonoBehaviour
     [Space(10)]
     [SerializeField] float _subActiveY;
     [SerializeField] float _subHiddenY;
-    
+
     [Space(10)]
     [SerializeField] float _tweenTime;
     [SerializeField] Ease _activateEase;
@@ -32,8 +32,8 @@ public class TopBarUI : MonoBehaviour
 
     void Start()
     {
-        _mainRect.DOAnchorPosY(_mainHiddenY, 0);
-        _subRect.DOAnchorPosY(_subHiddenY, 0);
+        _mainRect.anchoredPosition = new Vector2(_mainRect.anchoredPosition.x, _mainHiddenY);
+        _subRect.anchoredPosition = new Vector2(_subRect.anchoredPosition.x, _subHiddenY);
     }
 
     public void SetMenuBuild()
@@ -68,7 +68,7 @@ public class TopBarUI : MonoBehaviour
         _subRect.DOAnchorPosY(_subActiveY, _tweenTime).SetEase(_activateEase);
     }
 
-    void MenuGoAway()
+    public void MenuGoAway()
     {
         DOTween.Kill(_mainRect);
         DOTween.Kill(_subRect);

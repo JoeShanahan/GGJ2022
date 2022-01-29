@@ -7,6 +7,7 @@ public class VillagerAI : MonoBehaviour
 {
     [SerializeField] VillagerMove _movement;
     [SerializeField] VillagerAnimations _animation;
+    [SerializeField] GameStuff _gameState;
 
     private ActivePath _currentPath;
 
@@ -19,6 +20,12 @@ public class VillagerAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_gameState.IsNotPlayMode)
+        {
+            _movement.inputDirection = Vector2.zero;
+            return;
+        }
+            
         if (Input.GetKeyDown(KeyCode.P))
         {
             GeneratePathToPoint(FindObjectOfType<PlayerMove>().transform.position);
@@ -48,7 +55,7 @@ public class VillagerAI : MonoBehaviour
         // * Check the target is still in the same position
         // * CHeck that you've moved recently and aren't stuck
         Vector3 vecToPathFinder = _currentPath.currentPosition -transform.position;
-        _movement.inputDirection = Vector3.zero;
+        _movement.inputDirection = Vector2.zero;
 
         vecToPathFinder.y = 0;
 

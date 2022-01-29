@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
 	[SerializeField] MoveInfo _move;
     [SerializeField] Transform _floorTransform;
     [SerializeField] PlayerAnimations _anim;
+    [SerializeField] GameStuff _gameState;
     
     Rigidbody _rb;
 
@@ -82,6 +83,9 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_gameState.IsNotPlayMode)
+            return;
+
         Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         playerInput = Vector2.ClampMagnitude(playerInput, 1);
 
@@ -194,6 +198,9 @@ public class PlayerMove : MonoBehaviour
         {
 			_ground.contactNormal = Vector3.up;
 		}
+
+        if (_gameState.IsNotPlayMode)
+            _move.desiredVelocity = Vector3.zero;
 	}
 
     bool SnapToGround () {

@@ -477,6 +477,7 @@ MonoBehaviour:
     desiredVelocity: {x: 0, y: 0, z: 0}
   _floorTransform: {fileID: 2250361211937917010}
   _anim: {fileID: 1439896551889139561}
+  _gameState: {fileID: 11400000, guid: 986222c3de7a8483aa75f712a324189f, type: 2}
 --- !u!54 &4734847328296010170
 Rigidbody:
   m_ObjectHideFlags: 0
