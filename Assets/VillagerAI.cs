@@ -41,6 +41,9 @@ public class VillagerAI : MonoBehaviour
 
     public void FollowCurrentPath()
     {
+        // TODO Check that it's still valid every second or less
+        // * Check the target is still in the same position
+        // * CHeck that you've moved recently and aren't stuck
         Vector3 vecToPathFinder = _currentPath.currentPosition -transform.position;
         _movement.inputDirection = Vector3.zero;
 
