@@ -6,6 +6,7 @@ public class BuildManager : MonoBehaviour
 {
     [SerializeField] private GameObject _chosenPrefab;
     [SerializeField] private Material _ghostMaterial;
+    [SerializeField] private Transform _constructParent;
 
     private Transform _ghostObject;
     private int _rotation;
@@ -72,7 +73,7 @@ public class BuildManager : MonoBehaviour
         if (pos.y < 0 || pos.y > 2)
             return;
 
-        GameObject newObj = Instantiate(_chosenPrefab);
+        GameObject newObj = Instantiate(_chosenPrefab, _constructParent);
         newObj.transform.position = pos;
         newObj.transform.rotation = _ghostObject.transform.rotation;
     }
