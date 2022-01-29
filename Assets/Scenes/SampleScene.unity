@@ -4069,6 +4069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRunning: 0
   _rigidBody: {fileID: 6813784703642818583}
+  _playerMove: {fileID: 6813784703642818581}
 --- !u!95 &919132148298755781
 Animator:
   serializedVersion: 4

@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour
     
     Rigidbody _rb;
 
-	bool IsGrounded => _ground.groundContactCount > 0;
+	public bool IsGrounded => _ground.groundContactCount > 0;
 
     bool OnWall => _ground.wallContactCount > 0;
 
@@ -134,6 +134,7 @@ public class PlayerMove : MonoBehaviour
             }
         
             _move.velocity += _ground.contactNormal  * jumpSpeed;
+            _anim.DoJump();
         }
         else if (OnWall)
         {
@@ -143,6 +144,7 @@ public class PlayerMove : MonoBehaviour
         else if (_jump.phase <= _jump.maxAirJumps)
         {
             _move.velocity.y = jumpSpeed;
+            _anim.DoAirJump();
         }
 
         _jump.stepsSinceLastJump = 0;

@@ -6,6 +6,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     public bool isRunning = false;
     [SerializeField] private Rigidbody _rigidBody;
+    [SerializeField] private PlayerMove _playerMove;
     private Animator _anim;
 
     // Start is called before the first frame update
@@ -24,5 +25,18 @@ public class PlayerAnimations : MonoBehaviour
     {
         _anim.SetFloat("moveSpeed", _rigidBody.velocity.magnitude);
         _anim.SetBool("isRunning", isRunning);
+        _anim.SetBool("isGrounded", _playerMove.IsGrounded);
+    }
+
+    public void DoJump()
+    {
+        _anim.ResetTrigger("jumpTrigger");
+        _anim.SetTrigger("jumpTrigger");
+    }
+
+    public void DoAirJump()
+    {
+        _anim.ResetTrigger("airJumpTrigger");
+        _anim.SetTrigger("airJumpTrigger");
     }
 }
