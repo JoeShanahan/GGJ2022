@@ -24,19 +24,23 @@ public class VillagerAnimations : MonoBehaviour
 
     void SyncVars()
     {
-        _anim.SetFloat("moveSpeed", _rigidBody.velocity.magnitude);
+        if (_rigidBody != null)
+            _anim.SetFloat("moveSpeed", _rigidBody.velocity.magnitude);
+    
         _anim.SetBool("isRunning", isRunning);
         _anim.SetBool("isPointing", isPointing);
     }
 
     public void DieForwards()
     {
+        _anim.SetBool("isDead", true);
         _anim.ResetTrigger("dieForwardTrigger");
         _anim.SetTrigger("dieForwardTrigger");
     }
 
     public void DieBackwards()
     {
+        _anim.SetBool("isDead", true);
         _anim.ResetTrigger("dieBackwardsTrigger");
         _anim.SetTrigger("dieBackwardsTrigger");
     }
