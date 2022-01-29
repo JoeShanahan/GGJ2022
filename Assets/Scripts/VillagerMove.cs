@@ -57,6 +57,7 @@ public class VillagerMove : MonoBehaviour
 
 	public bool IsGrounded => _ground.groundContactCount > 0;
     public Vector2 inputDirection;
+    public float MaxMoveVelocity => _move.maxSpeed;
 
     bool OnWall => _ground.wallContactCount > 0;
 

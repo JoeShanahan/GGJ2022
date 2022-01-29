@@ -97,6 +97,5 @@ public class Villager : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         GetComponent<VillagerMove>().enabled = false;
         Destroy(GetComponent<Rigidbody>());
-
     }
 }
