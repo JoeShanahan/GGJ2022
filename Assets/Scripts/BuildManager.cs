@@ -5,6 +5,10 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     [SerializeField] private GameObject _chosenPrefab;
+    [SerializeField] private Material _ghostMaterial;
+
+    private Transform _ghostObject;
+    private int _rotation;
 
     private Camera _mainCam;
 
@@ -24,8 +28,20 @@ public class BuildManager : MonoBehaviour
 
 
         Vector3 ghostPos = GetGhostPosition();
-        Debug.DrawLine(ghostPos, ghostPos + Vector3.up);
-        
+        _ghostObject.position = ghostPos;
+
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            _rotation += 90;
+            RotateGhost();
+        }
+
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            _rotation -= 90;
+            RotateGhost();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             PlaceGhostedItem(ghostPos);
@@ -39,15 +55,36 @@ public class BuildManager : MonoBehaviour
         }
     }
 
+    private void RotateGhost()
+    {
+        if (_ghostObject == null)
+            return;
+
+        _rotation = _rotation % 360;
+
+        Vector3 angles = _ghostObject.eulerAngles;
+        angles.y = _rotation;
+        _ghostObject.eulerAngles = angles;
+    }
+
     public void PlaceGhostedItem(Vector3 pos)
     {
+        if (pos.y < 0 || pos.y > 8)
+            return;
+
         GameObject newObj = Instantiate(_chosenPrefab);
         newObj.transform.position = pos;
+        newObj.transform.rotation = _ghostObject.transform.rotation;
     }
 
     public void ActivateBuildMode(GameObject prefab)
     {
         _chosenPrefab = prefab;
+        GameObject newObj = Instantiate(_chosenPrefab);
+        newObj.GetComponent<Collider>().enabled = false;
+        newObj.GetComponent<MeshRenderer>().material = _ghostMaterial;
+        _ghostObject = newObj.transform;
+        RotateGhost();
     }
 
     public Vector3 GetGhostPosition()

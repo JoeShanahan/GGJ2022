@@ -1775,6 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chosenPrefab: {fileID: 0}
+  _ghostMaterial: {fileID: 2100000, guid: dc120fabca38c4790ab99f69c02de677, type: 2}
 --- !u!4 &866009699
 Transform:
   m_ObjectHideFlags: 0
