@@ -25,12 +25,7 @@ public class VillagerAI : MonoBehaviour
             _movement.inputDirection = Vector2.zero;
             return;
         }
-            
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GeneratePathToPoint(FindObjectOfType<PlayerMove>().transform.position);
-        }
-        
+                    
         if (_currentPath != null)
         {
             FollowCurrentPath();
