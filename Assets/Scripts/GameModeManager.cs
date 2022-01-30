@@ -5,10 +5,11 @@ using UnityEngine;
 public class GameModeManager : MonoBehaviour
 {
     [SerializeField] GameStuff _gameState;
-    [SerializeField] RectTransform _buildBar;
-    [SerializeField] RectTransform _topRightBar;
+    [SerializeField] OnOffUI _buildBar;
+    [SerializeField] OnOffUI _topRightBar;
     [SerializeField] TopBarUI _topBar;
     [SerializeField] BuildManager _buildManager;
+    [SerializeField] DestroyManager _destroyManager;
     [SerializeField] Transform _buildModeCamera;
     [SerializeField] NavigationHelper _navigation;
 
@@ -32,7 +33,9 @@ public class GameModeManager : MonoBehaviour
         _topBar.MenuGoAway();
         SetNewState(GameStuff.CurrentState.PlayMode);
         _buildManager.SetBuildModeActive(false);
+        _destroyManager.SetDestroyModeActive(false);
         _buildModeCamera.gameObject.SetActive(false);
+        _buildBar.TurnOff();
     }
 
     public void StartBuildMode()
@@ -40,7 +43,9 @@ public class GameModeManager : MonoBehaviour
         _topBar.SetMenuBuild();
         SetNewState(GameStuff.CurrentState.BuildMode);
         _buildManager.SetBuildModeActive(true);
+        _destroyManager.SetDestroyModeActive(false);
         _buildModeCamera.gameObject.SetActive(true);
+        _buildBar.TurnOn();
     }
 
     public void StartDestroyMode()
@@ -48,12 +53,15 @@ public class GameModeManager : MonoBehaviour
         _topBar.SetMenuDestroy();
         SetNewState(GameStuff.CurrentState.DestroyMode);
         _buildManager.SetBuildModeActive(false);
+        _destroyManager.SetDestroyModeActive(true);
         _buildModeCamera.gameObject.SetActive(true);
+        _buildBar.TurnOff();
     }
 
     public void BringUpSettingsMenu()
     {
         _buildManager.SetBuildModeActive(false);
+        _destroyManager.SetDestroyModeActive(false);
         SetNewState(GameStuff.CurrentState.DestroyMode);
     }
 
