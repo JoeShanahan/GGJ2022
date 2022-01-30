@@ -13,6 +13,7 @@ public class IAamTheMusicMan : MonoBehaviour
         if (_instance != null)
         {
             Destroy(gameObject);
+            return;
         }
 
         _instance = this;

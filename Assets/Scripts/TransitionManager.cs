@@ -12,7 +12,7 @@ public class TransitionManager : MonoBehaviour
 
     public static void LoadTitleScene()
     {
-        FindObjectOfType<TransitionManager>().LoadSceneByName("SampleScene");
+        FindObjectOfType<TransitionManager>().LoadSceneByName("TitleScene");
     }
     
     private void LoadSceneByName(string sceneName)
