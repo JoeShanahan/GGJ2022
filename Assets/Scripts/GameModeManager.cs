@@ -12,6 +12,7 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] DestroyManager _destroyManager;
     [SerializeField] Transform _buildModeCamera;
     [SerializeField] NavigationHelper _navigation;
+    [SerializeField] PauseMenu _pauseMenu;
 
     private GameStuff.CurrentState _lastKnownState = GameStuff.CurrentState.PlayMode;
 
@@ -60,6 +61,7 @@ public class GameModeManager : MonoBehaviour
 
     public void BringUpSettingsMenu()
     {
+        _pauseMenu.Appear();
         _buildManager.SetBuildModeActive(false);
         _destroyManager.SetDestroyModeActive(false);
         SetNewState(GameStuff.CurrentState.DestroyMode);
