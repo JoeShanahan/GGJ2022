@@ -6,13 +6,13 @@ public class BallistaTower : MonoBehaviour
 {
     [SerializeField] Transform _leftRight;
     [SerializeField] Transform _upDown;
-    [SerializeField] Transform _currentTarget;
+    [SerializeField] Villager _currentTarget;
     [SerializeField] GameObject _arrowPrefab;
     [SerializeField] Transform _visualArrow;
     [SerializeField] GameStuff _gameSTate;
     [SerializeField] Collider _triggerField;
 
-    [SerializeField] List<Transform> _possibleTargets = new List<Transform>();
+    [SerializeField] List<Villager> _possibleTargets = new List<Villager>();
     Animator _anim;
 
     [SerializeField] bool _isLoaded;
@@ -53,6 +53,14 @@ public class BallistaTower : MonoBehaviour
         if (_gameSTate.IsNotPlayMode)
             return;
 
+        if (_currentTarget != null && _currentTarget.IsDead)
+        {
+            _currentTarget = null;
+
+            if (_possibleTargets.Contains(_currentTarget))
+                _possibleTargets.Remove(_currentTarget);
+        }
+
         if (_currentTarget == null)
         {
             SetTargetAsClosest();
@@ -89,10 +97,30 @@ public class BallistaTower : MonoBehaviour
 
     private void SetTargetAsClosest()
     {
-        Transform closest = null;
+        Villager closest = null;
         float distance = 999;
 
+        foreach (Villager vi in _possibleTargets)
+        {
+            if (vi == null)
+                continue;
 
+            if (vi.tag != MyTags.Villager)
+                continue;
+
+            if (vi.IsDead)
+                continue;
+
+            float d = Vector3.Distance(transform.position, vi.transform.position);
+
+            if (d < distance)
+            {
+                distance = d;
+                closest = vi;
+            }
+        }
+
+        _currentTarget = closest;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -100,21 +128,31 @@ public class BallistaTower : MonoBehaviour
         if (other.gameObject.tag != MyTags.Villager)
             return;
 
-        if (_possibleTargets.Contains(other.transform))
+        Villager vi = other.GetComponent<Villager>();
+
+        if (vi == null)
             return;
 
-        _possibleTargets.Add(other.transform);
+        if (_possibleTargets.Contains(vi))
+            return;
+
+        _possibleTargets.Add(vi);
 
         if (_currentTarget == null)
-            _currentTarget = other.transform;
+            _currentTarget = vi;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (_possibleTargets.Contains(other.transform))
-            _possibleTargets.Remove(other.transform);
+        Villager vi = other.GetComponent<Villager>();
 
-        if (other.transform == _currentTarget)
+        if (vi == null)
+            return;
+
+        if (_possibleTargets.Contains(vi))
+            _possibleTargets.Remove(vi);
+
+        if (vi == _currentTarget)
         {
             _currentTarget = null;
             SetTargetAsClosest();

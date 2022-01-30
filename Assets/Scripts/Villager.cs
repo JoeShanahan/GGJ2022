@@ -17,6 +17,8 @@ public class Villager : MonoBehaviour
     private int _materialIndex;
     private bool _hasDied = false;
 
+    public bool IsDead => _hasDied;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,13 +58,18 @@ public class Villager : MonoBehaviour
 
     }
 
-    public void Damage(Vector3 position, int amount)
+    public bool Damage(Vector3 position, int amount)
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         if (currentHealth == 0)
+        {
             Kill(position);
+            return true;
+        }
+
+        return false;
     }
 
     public void ExplosiveKill(Vector3 position, float force, float radius)

@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] int _explodeDamage;
     [SerializeField] float _explodeRadius;
     [SerializeField] GameObject _explodeParticles;
+    [SerializeField] int _normalDamage = 1;
 
     void Start()
     {
@@ -42,6 +43,11 @@ public class Projectile : MonoBehaviour
 
         bool isPlayer = other.tag == MyTags.ThePlayer;
         bool isVillager = other.tag == MyTags.Villager;
+
+        if (isVillager)
+        {
+            other.GetComponent<Villager>().Damage(transform.position, _normalDamage);
+        }
 
         if (isPlayer || isVillager)
         {

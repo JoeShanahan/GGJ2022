@@ -100,6 +100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 20
   _rb: {fileID: 2134642360774568390}
+  _doesExplode: 0
+  _explodeForce: 0
+  _explodeDamage: 0
+  _explodeRadius: 0
+  _explodeParticles: {fileID: 0}
+  _normalDamage: 5
 --- !u!136 &7202197465401780942
 CapsuleCollider:
   m_ObjectHideFlags: 0
