@@ -51,7 +51,7 @@ public class Villager : MonoBehaviour
         if (currentHealth <= 0)
             ExplosiveKill(position, force, radius);
         else
-            GetComponent<Rigidbody>().AddExplosionForce(force, position, radius);
+            GetComponent<Rigidbody>().AddExplosionForce(force * 8, position, radius);
 
     }
 

@@ -80,6 +80,11 @@ public class PlayerMove : MonoBehaviour
         _ground.wallNormal = Vector3.zero;
 	}
 
+    public void ExplosiveDamage(Vector3 position, int damage, float force, float radius)
+    {
+        _rb.AddExplosionForce(force * 8, position, radius);
+    }
+
     // Update is called once per frame
     void Update()
     {

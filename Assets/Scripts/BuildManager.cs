@@ -130,8 +130,15 @@ public class BuildManager : MonoBehaviour
     {
         _chosenPrefab = prefab;
         GameObject newObj = Instantiate(_chosenPrefab);
-        newObj.GetComponent<Collider>().enabled = false;
-        newObj.GetComponent<MeshRenderer>().material = _ghostMaterial;
+        foreach (var col in newObj.GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        foreach (var rend in newObj.GetComponentsInChildren<MeshRenderer>())
+            rend.material = _ghostMaterial;
+
+        foreach (var rend in newObj.GetComponentsInChildren<SkinnedMeshRenderer>())
+            rend.material = _ghostMaterial;
+
         _ghostObject = newObj.transform;
         RotateGhost();
     }

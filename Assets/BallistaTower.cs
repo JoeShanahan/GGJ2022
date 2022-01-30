@@ -9,6 +9,8 @@ public class BallistaTower : MonoBehaviour
     [SerializeField] Transform _currentTarget;
     [SerializeField] GameObject _arrowPrefab;
     [SerializeField] Transform _visualArrow;
+    [SerializeField] GameStuff _gameSTate;
+    [SerializeField] Collider _triggerField;
 
     [SerializeField] List<Transform> _possibleTargets = new List<Transform>();
     Animator _anim;
@@ -46,6 +48,11 @@ public class BallistaTower : MonoBehaviour
 
     void Update()
     {
+        _triggerField.enabled = !_gameSTate.IsNotPlayMode;
+        
+        if (_gameSTate.IsNotPlayMode)
+            return;
+
         if (_currentTarget == null)
         {
             SetTargetAsClosest();
