@@ -7,11 +7,40 @@ public class BallistaTower : MonoBehaviour
     [SerializeField] Transform _leftRight;
     [SerializeField] Transform _upDown;
     [SerializeField] Transform _currentTarget;
+    [SerializeField] GameObject _arrowPrefab;
+    [SerializeField] Transform _visualArrow;
 
     [SerializeField] List<Transform> _possibleTargets = new List<Transform>();
+    Animator _anim;
+
+    [SerializeField] bool _isLoaded;
+
+    public void AnimArrowFire()
+    {
+        _isLoaded = false;
+        _visualArrow.gameObject.SetActive(false);
+        GameObject newObj = Instantiate(_arrowPrefab, _visualArrow.transform.position, _visualArrow.transform.rotation);
+        
+    }
+
+    public void AnimShowArrow()
+    {
+        _visualArrow.gameObject.SetActive(true);
+    }
+
+    public void AnimFullyLoaded()
+    {
+        _isLoaded = true;
+    }
+
+    public void StartArrowFireAnimation()
+    {
+
+    }
 
     void Start()
     {
+        _anim = GetComponent<Animator>();
         StartCoroutine(CleanUpJunk());
     }
 
@@ -26,6 +55,13 @@ public class BallistaTower : MonoBehaviour
         if (_currentTarget != null)
         {
             AimAtTarget();
+
+            if (_isLoaded)
+            {
+                _isLoaded = false;
+                _anim.ResetTrigger("FireArrow");
+                _anim.SetTrigger("FireArrow");
+            }
         }
     }
 

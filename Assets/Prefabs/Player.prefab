@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 4734847328296010168}
   - component: {fileID: 4734847328296010170}
   - component: {fileID: 4449170929904865479}
+  - component: {fileID: 6996670922840922289}
   m_Layer: 0
   m_Name: Player
   m_TagString: ThePlayer
@@ -514,6 +515,19 @@ MonoBehaviour:
   - Over here!
   - Whoa what's this?!
   - Tag - you're it
+--- !u!114 &6996670922840922289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734847328296010169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b21348640f864eb092f624ea8a3bc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 4188139907176289941}
 --- !u!1 &5502496990140572977
 GameObject:
   m_ObjectHideFlags: 0

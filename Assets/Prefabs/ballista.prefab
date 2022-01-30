@@ -910,6 +910,7 @@ GameObject:
   - component: {fileID: 8142794069973995864}
   - component: {fileID: 8142794069973995847}
   - component: {fileID: 8142794069973995846}
+  - component: {fileID: 2183011243365591954}
   m_Layer: 0
   m_Name: ballista
   m_TagString: Construct
@@ -949,7 +950,10 @@ MonoBehaviour:
   _leftRight: {fileID: 1360388951504931042}
   _upDown: {fileID: 6024338173193054698}
   _currentTarget: {fileID: 0}
+  _arrowPrefab: {fileID: 7683664559114645900, guid: 990140dcf441044feafec5ee568639a8, type: 3}
+  _visualArrow: {fileID: 3375542370298556660}
   _possibleTargets: []
+  _isLoaded: 0
 --- !u!65 &8142794069973995847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -961,8 +965,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 2, y: 0.68845856, z: 2}
+  m_Center: {x: 0, y: 0.34422928, z: 0}
 --- !u!135 &8142794069973995846
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -976,6 +980,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 12
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2183011243365591954
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8142794069973995845}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ceeccf2de39d4664972ef5ebf4254f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8225800324447351801
 GameObject:
   m_ObjectHideFlags: 0
