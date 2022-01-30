@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3249082411567060060}
   m_Layer: 0
   m_Name: PersonGibRightArm
-  m_TagString: Untagged
+  m_TagString: Gibs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 543618933247501088}
   m_Layer: 0
   m_Name: PersonGibLeftLeg
-  m_TagString: Untagged
+  m_TagString: Gibs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 531774993992056423}
   m_Layer: 0
   m_Name: PersonGibHead
-  m_TagString: Untagged
+  m_TagString: Gibs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 8329710532510136259}
   m_Layer: 0
   m_Name: PersonGibRightLeg
-  m_TagString: Untagged
+  m_TagString: Gibs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 4894596337872171187}
   m_Layer: 0
   m_Name: PersonGibLefArm
-  m_TagString: Untagged
+  m_TagString: Gibs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 289589543987401538}
   m_Layer: 0
   m_Name: PersonGibBody
-  m_TagString: Untagged
+  m_TagString: Gibs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

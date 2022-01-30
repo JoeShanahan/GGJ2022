@@ -30,7 +30,10 @@ public class Projectile : MonoBehaviour
                     collider.GetComponent<Villager>().ExplosiveDamage(transform.position, _explodeDamage, _explodeForce, _explodeRadius);
 
                 if (collider.tag == MyTags.ThePlayer)
-                    collider.GetComponent<PlayerMove>().ExplosiveDamage(transform.position, _explodeDamage, _explodeForce, _explodeRadius);
+                    collider.attachedRigidbody.AddExplosionForce(_explodeForce * 8, transform.position, _explodeRadius, 0.2f);
+
+                if (collider.tag == "Gibs")
+                    collider.attachedRigidbody.AddExplosionForce(_explodeForce, transform.position, _explodeRadius);
             }
 
             Destroy(gameObject);

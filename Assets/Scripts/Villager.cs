@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Villager : MonoBehaviour
 {
@@ -72,7 +73,12 @@ public class Villager : MonoBehaviour
             rend.material = _materials[_materialIndex];
 
         foreach (Rigidbody rb in gibsParent.GetComponentsInChildren<Rigidbody>())
+        {
             rb.AddExplosionForce(force, position, radius);
+
+            Transform trans = rb.transform;
+            trans.DOScale(0, 0.5f).SetEase(Ease.Linear).SetDelay(16).OnComplete(() => Destroy(trans.gameObject));
+        }
         
         Destroy(gameObject);
     }
