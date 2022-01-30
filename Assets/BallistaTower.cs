@@ -97,7 +97,7 @@ public class BallistaTower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != MyTags.ThePlayer)
+        if (other.gameObject.tag != MyTags.Villager)
             return;
 
         if (_possibleTargets.Contains(other.transform))
