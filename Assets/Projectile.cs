@@ -37,6 +37,11 @@ public class Projectile : MonoBehaviour
                     collider.attachedRigidbody.AddExplosionForce(_explodeForce, transform.position, _explodeRadius);
             }
 
+            if (_explodeParticles)
+            {
+                GameObject newobj = Instantiate(_explodeParticles, transform.position, Quaternion.identity);
+                Destroy(newobj, 10);
+            }
             Destroy(gameObject);
             return;
         }

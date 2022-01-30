@@ -187,8 +187,9 @@ MonoBehaviour:
   _doesExplode: 1
   _explodeForce: 100
   _explodeDamage: 5
-  _explodeRadius: 5
-  _explodeParticles: {fileID: 0}
+  _explodeRadius: 3
+  _explodeParticles: {fileID: 3784015737801304724, guid: 0a2d17984a7f947079b352576146de02, type: 3}
+  _normalDamage: 1
 --- !u!136 &7202197465401780942
 CapsuleCollider:
   m_ObjectHideFlags: 0
